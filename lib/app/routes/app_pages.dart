@@ -1,6 +1,9 @@
+import 'package:flutter_application_1/app/home/edit_product/edit_product_page.dart';
 import 'package:flutter_application_1/app/login/login_page.dart';
 import 'package:get/get.dart';
 
+import '../home/edit_users/edit_user_binding.dart';
+import '../home/edit_users/edit_user_page.dart';
 import '../home/home_binding.dart';
 import '../home/home_page.dart';
 import '../home/new_product/new_product_bindings.dart';
@@ -33,6 +36,11 @@ class AppPages {
       name: Routes.REGISTER,
       page: () => const RegisterPage(),
       binding: RegisterBindings(),
+    ),
+    GetPage(
+      name: Routes.EDITUSER,
+      page: () => const EditUserPage(),
+      binding: EditUserBindings(),
     )
   ];
 }

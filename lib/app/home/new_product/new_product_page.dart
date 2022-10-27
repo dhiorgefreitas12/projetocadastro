@@ -11,9 +11,10 @@ class NewProductPage extends GetView<NewProductController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        elevation: 0,
+        backgroundColor: Colors.deepPurple,
         centerTitle: true,
-        title: Text('Cadastrar Produto'),
+        title: Text('Teste'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -59,8 +60,9 @@ class NewProductPage extends GetView<NewProductController> {
                 padding: const EdgeInsets.only(top: 25),
                 child: ElevatedButton(
                   child: Text('Cadastrar'),
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple,
+                  ),
                   onPressed: () {
                     FirebaseFirestore.instance.collection('product').add(
                       {

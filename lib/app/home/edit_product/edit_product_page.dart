@@ -24,9 +24,9 @@ class EditPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey.shade800,
         centerTitle: true,
-        title: Text('Editar Produto'),
+        title: Text('Teste'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
@@ -72,8 +72,9 @@ class EditPage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 25),
                 child: ElevatedButton(
                   child: Text('Alterar Produto'),
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey.shade800,
+                  ),
                   onPressed: () {
                     FirebaseFirestore.instance
                         .collection('product')
@@ -81,7 +82,7 @@ class EditPage extends StatelessWidget {
                         .update({
                       "name": namecontroller.text,
                       "price": pricecontroller.text,
-                      "iventory": inventorycontroller.text,
+                      "inventory": inventorycontroller.text,
                     });
                     Get.back();
                   },

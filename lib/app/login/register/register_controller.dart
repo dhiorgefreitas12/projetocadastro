@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/auth/auth_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 
 class RegisterController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -11,7 +10,23 @@ class RegisterController extends GetxController {
   AuthController authController;
   RegisterController(this.authController);
 
+  TextEditingController namecontroller = TextEditingController();
+
   TextEditingController logincontroller = TextEditingController();
+
+  TextEditingController cpfcontroller = TextEditingController();
+
+  TextEditingController cepcontroller = TextEditingController();
+
+  TextEditingController roadcontroller = TextEditingController();
+
+  TextEditingController numbercontroller = TextEditingController();
+
+  TextEditingController districtcontroller = TextEditingController();
+
+  TextEditingController citycontroller = TextEditingController();
+
+  TextEditingController sstatecontroller = TextEditingController();
 
   TextEditingController passworddcontroller = TextEditingController();
 
@@ -28,7 +43,16 @@ class RegisterController extends GetxController {
   setRegister() async {
     if (formKey.currentState!.validate()) {
       await authController.setRegister(
-          logincontroller.text, password2controller.text);
+        namecontroller.text,
+        logincontroller.text,
+        password2controller.text,
+        cepcontroller.text,
+        roadcontroller.text,
+        numbercontroller.text,
+        districtcontroller.text,
+        citycontroller.text,
+        sstatecontroller.text,
+      );
       if (authController.userLoged.email != null) {
         Get.toNamed('/home');
       }
