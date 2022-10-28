@@ -53,7 +53,7 @@ class RegisterController extends GetxController {
         citycontroller.text,
         sstatecontroller.text,
       );
-      if (authController.userLoged.email != null) {
+      if (authController.userLoged.value.email != null) {
         Get.toNamed('/home');
       }
     } else {

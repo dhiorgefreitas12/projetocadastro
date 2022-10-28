@@ -12,6 +12,7 @@ import '../auth/auth_controller.dart';
 class HomeController extends GetxController {
   AppController appController;
   AuthController authController;
+
   HomeController(this.appController, this.authController);
 
   var scaffoldKey = GlobalKey<ScaffoldState>();

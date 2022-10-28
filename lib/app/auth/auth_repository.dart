@@ -51,7 +51,7 @@ class AuthRepository extends GetConnect {
       UserModel user = UserModel.fromFirebase(data);
       return user;
     } catch (e) {
-      Get.bottomSheet(Container(
+      await Get.bottomSheet(Container(
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -95,5 +95,11 @@ class AuthRepository extends GetConnect {
 
   Future signOut() async {
     auth.signOut();
+  }
+
+  Future updateUser(UserModel userlogged) async {
+    var data = await firebase.collection('users').doc(userlogged.email).get();
+    UserModel user = UserModel.fromFirebase(data);
+    return user;
   }
 }

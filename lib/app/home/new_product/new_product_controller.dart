@@ -13,5 +13,7 @@ class NewProductController extends GetxController {
 
   TextEditingController pricecontroller = TextEditingController();
 
+  TextEditingController codecontroller = TextEditingController();
+
   TextEditingController inventorycontroller = TextEditingController();
 }

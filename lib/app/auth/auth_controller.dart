@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'auth_repository.dart';
 
 class AuthController extends GetxController {
-  UserModel userLoged = UserModel();
+  Rx<UserModel> userLoged = UserModel().obs;
 
   AuthRepository _authRepository;
   AuthController(this._authRepository);
@@ -21,16 +21,20 @@ class AuthController extends GetxController {
     String city,
     String sstate,
   ) async {
-    userLoged = await _authRepository.setRegister(
+    userLoged.value = await _authRepository.setRegister(
         name, email, password, cep, road, number, district, city, sstate);
   }
 
   Future setLogin(String email, String password) async {
-    userLoged = await _authRepository.setLogin(email, password);
+    userLoged.value = await _authRepository.setLogin(email, password);
   }
 
   Future signOut() async {
-    userLoged = UserModel();
+    userLoged.value = UserModel();
     _authRepository.signOut();
+  }
+
+  Future updateUser() async {
+    userLoged.value = await _authRepository.updateUser(userLoged.value);
   }
 }

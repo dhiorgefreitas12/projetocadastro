@@ -33,10 +33,9 @@ class NewProductPage extends GetView<NewProductController> {
               Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: TextFormField(
-                  controller: controller.pricecontroller,
-                  keyboardType: TextInputType.number,
+                  controller: controller.codecontroller,
                   decoration: InputDecoration(
-                    hintText: 'Valor do Produto',
+                    hintText: 'Codigo do Produto',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(),
                         borderRadius: BorderRadius.circular(10)),
@@ -57,6 +56,19 @@ class NewProductPage extends GetView<NewProductController> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: TextFormField(
+                  controller: controller.pricecontroller,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: 'Valor do Produto',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top: 25),
                 child: ElevatedButton(
                   child: Text('Cadastrar'),
@@ -69,6 +81,7 @@ class NewProductPage extends GetView<NewProductController> {
                         'name': controller.namecontroller.text,
                         'price': controller.pricecontroller.text,
                         'inventory': controller.inventorycontroller.text,
+                        'code': controller.codecontroller.text,
                       },
                     );
                     Get.back();

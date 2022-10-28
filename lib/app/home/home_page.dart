@@ -55,44 +55,46 @@ class HomePage extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.person_pin,
-                            color: Colors.white,
-                            size: 50,
-                          ),
-                          onPressed: () {
-                            Get.toNamed('/edituser');
-                          },
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
                         ),
-                        const SizedBox(
-                          height: 10,
+                        label: Text('Editar'),
+                        icon: const Icon(
+                          Icons.person_pin,
+                          color: Colors.white,
+                          size: 80,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Text(
-                            'Email: ' +
-                                controller.authController.userLoged.email
-                                    .toString(),
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Text(
+                        onPressed: () {
+                          Get.toNamed('/edituser');
+                        },
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Email: ' +
+                            controller.authController.userLoged.value.email
+                                .toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Obx(
+                        (() {
+                          print(controller.authController.userLoged.value);
+                          return Text(
                             'Usuário: ' +
-                                controller.authController.userLoged.name
+                                controller.authController.userLoged.value.name
                                     .toString(),
                             style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
+                          );
+                        }),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -110,7 +112,8 @@ class HomePage extends GetView<HomeController> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                controller.deletesers(controller.authController.userLoged);
+                controller
+                    .deletesers(controller.authController.userLoged.value);
               },
             ),
           ],
@@ -137,13 +140,67 @@ class HomePage extends GetView<HomeController> {
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       var product = products[index];
-                      return ListTile(
-                        onTap: () {
-                          controller.openBottomSheet(product);
-                        },
-                        trailing: Text(product.inventory.toString()),
-                        subtitle: Text(product.price.toString()),
-                        title: Text(product.name.toString()),
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15),
+                                    bottomLeft: Radius.circular(15),
+                                    bottomRight: Radius.circular(15),
+                                  )),
+                              width: 120,
+                              height: 190,
+                              child: InkWell(
+                                onTap: () {
+                                  controller.openBottomSheet(product);
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      'assets/imagens/brasil.jpg',
+                                      fit: BoxFit.cover,
+                                      width: 120,
+                                      height: 120,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 5, bottom: 5),
+                                      child: Text(
+                                        product.name.toString(),
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Estoque: ' +
+                                          product.inventory.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                    Text(
+                                      'R\$' + product.price.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       );
                     },
                   );

@@ -27,7 +27,7 @@ class LoginController extends GetxController {
     if (formKey.currentState!.validate()) {
       await authController.setLogin(
           logincontroller.text, passworddcontroller.text);
-      if (authController.userLoged.email != null) {
+      if (authController.userLoged.value.email != null) {
         Get.toNamed('/home');
       }
     } else {
