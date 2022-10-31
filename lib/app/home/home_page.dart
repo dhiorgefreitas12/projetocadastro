@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/app/home/home_controller.dart';
 import 'package:flutter_application_1/app/models/product_model.dart';
 import 'package:get/get.dart';
@@ -132,16 +133,18 @@ class HomePage extends GetView<HomeController> {
                     child: CircularProgressIndicator(),
                   );
                 } else {
-                  List<productModel> products = [];
+                  List<ProductModel> products = [];
                   for (var x in snapshot.data!.docs) {
-                    products.add(productModel.fromFirebase(x));
+                    products.add(ProductModel.fromFirebase(x));
                   }
                   return ListView.builder(
+                    scrollDirection: Axis.horizontal,
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       var product = products[index];
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -155,7 +158,7 @@ class HomePage extends GetView<HomeController> {
                                     bottomRight: Radius.circular(15),
                                   )),
                               width: 120,
-                              height: 190,
+                              height: 205,
                               child: InkWell(
                                 onTap: () {
                                   controller.openBottomSheet(product);
@@ -164,35 +167,49 @@ class HomePage extends GetView<HomeController> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Image.asset(
-                                      'assets/imagens/brasil.jpg',
+                                    Image.network(
+                                      product.image.toString(),
                                       fit: BoxFit.cover,
                                       width: 120,
                                       height: 120,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 5, bottom: 5),
+                                          top: 5, bottom: 5, left: 5),
                                       child: Text(
                                         product.name.toString(),
                                         style: const TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      'Estoque: ' +
-                                          product.inventory.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 10,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Text(
+                                        'Codigo:' + product.code.toString(),
+                                        style: const TextStyle(fontSize: 10),
                                       ),
                                     ),
-                                    Text(
-                                      'R\$' + product.price.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Text(
+                                        'Estoque: ' +
+                                            product.inventory.toString(),
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, top: 5),
+                                      child: Text(
+                                        'R\$' + product.price.toString(),
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ],

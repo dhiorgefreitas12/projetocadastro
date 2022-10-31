@@ -1,28 +1,38 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class productModel {
+class ProductModel {
   String? id;
   String? name;
   String? price;
   String? inventory;
   String? code;
+  String? image;
 
-  productModel({this.name, this.price, this.inventory, this.id, this.code});
+  ProductModel({
+    this.name,
+    this.price,
+    this.inventory,
+    this.id,
+    this.code,
+    this.image,
+  });
 
-  productModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     price = json['price'];
     inventory = json['inventory'];
     code = json['code'];
+    image = json['image'];
   }
 
-  productModel.fromFirebase(QueryDocumentSnapshot<Map<String, dynamic>> data) {
+  ProductModel.fromFirebase(QueryDocumentSnapshot<Map<String, dynamic>> data) {
     id = data.id;
     name = data.data()['name'];
     price = data.data()['price'];
     inventory = data.data()['inventory'];
     code = data.data()['code'];
+    image = data.data()['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +41,7 @@ class productModel {
     data['price'] = this.price;
     data['inventory'] = this.inventory;
     data['code'] = this.code;
+    data['image'] = this.image;
     return data;
   }
 }

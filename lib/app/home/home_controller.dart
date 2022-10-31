@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/home/edit_product/edit_product_page.dart';
-import 'package:flutter_application_1/app/login/login_controller.dart';
 import 'package:flutter_application_1/app/models/product_model.dart';
 import 'package:flutter_application_1/app/models/user_model.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class HomeController extends GetxController {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
-  void openBottomSheet(productModel product) {
+  void openBottomSheet(ProductModel product) {
     Get.bottomSheet(
       Column(
         mainAxisAlignment: MainAxisAlignment.start,
