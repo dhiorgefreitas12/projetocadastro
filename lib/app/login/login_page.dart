@@ -10,94 +10,35 @@ class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: controller.formKey,
-          child: Container(
-            height: Get.height * 1,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 40,
-                right: 40,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.phone_android,
-                    size: Get.width * 0.3,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'Login Application',
-                    style: GoogleFonts.bebasNeue(fontSize: 30),
-                  ),
-                  TextFormField(
-                    controller: controller.logincontroller,
-                    decoration: InputDecoration(
-                      labelText: 'Login',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Email obrigatorio';
-                      } else if (!EmailValidator.validate(value)) {
-                        return 'Email invalido';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  TextFormField(
-                    controller: controller.passworddcontroller,
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Senha obrigatoria';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  Row(
-                    children: [
-                      TextButton(
-                        child: Text('Cadastrar-se'),
-                        onPressed: () {
-                          Get.toNamed('register');
-                        },
-                      )
-                    ],
-                  ),
-                  Container(
-                    width: Get.width * 0.5,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple),
-                      child: const Text(
-                        'Entrar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: controller.setLogin,
-                    ),
-                  ),
-                ],
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fitHeight,
+              image: AssetImage(
+                'assets/imagens/beautiful.jpg',
               ),
             ),
           ),
         ),
-      ),
-    );
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 15),
+          child: Container(
+            width: Get.width * 0.9,
+            child: FloatingActionButton.extended(
+              elevation: 2,
+              backgroundColor: Colors.deepPurple,
+              label: const Text('Entrar'),
+              onPressed: () {
+                Get.bottomSheet(
+                  Container(
+                    height: 1100,
+                    color: Colors.white,
+                  ),
+                );
+              },
+            ),
+          ),
+        ));
   }
 }

@@ -17,6 +17,8 @@ class EditPage extends StatelessWidget {
 
   TextEditingController codecontroller = TextEditingController();
 
+  TextEditingController imagecontroller = TextEditingController();
+
   EditPage({required this.product});
   @override
   Widget build(BuildContext context) {
@@ -24,12 +26,11 @@ class EditPage extends StatelessWidget {
     pricecontroller.text = product.price.toString();
     inventorycontroller.text = product.inventory.toString();
     codecontroller.text = product.code.toString();
+    imagecontroller.text = product.image.toString();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        centerTitle: true,
-        title: Text('Teste'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
@@ -81,6 +82,19 @@ class EditPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10)),
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Container(
+                      width: Get.width * 0.5,
+                      child: Image.network(imagecontroller.text),
+                    ),
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25),

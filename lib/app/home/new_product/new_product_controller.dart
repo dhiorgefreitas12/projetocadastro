@@ -25,9 +25,6 @@ class NewProductController extends GetxController {
 
   RxString image = RxString('');
 
-  bool uploading = false;
-  double total = 0;
-
   Future<XFile?> getImage() async {
     final ImagePicker _picker = ImagePicker();
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -35,7 +32,9 @@ class NewProductController extends GetxController {
   }
 
   Future<void> upload(String path) async {
-    Reference ref = FirebaseStorage.instance.ref().child('images/imageId');
+    Reference ref = FirebaseStorage.instance
+        .ref()
+        .child('images/${DateTime.now().toString()}.jpg');
     final metadata = SettableMetadata(
         contentType: 'image/jpeg', customMetadata: {'picked-file-path': path});
     UploadTask uploadTask;

@@ -4,7 +4,6 @@ import 'package:flutter_application_1/app/home/edit_product/edit_product_page.da
 import 'package:flutter_application_1/app/models/product_model.dart';
 import 'package:flutter_application_1/app/models/user_model.dart';
 import 'package:get/get.dart';
-
 import '../app_controller.dart';
 import '../auth/auth_controller.dart';
 
