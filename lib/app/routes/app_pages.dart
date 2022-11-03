@@ -11,8 +11,6 @@ import '../home/new_product/new_product_page.dart';
 import '../login/login_binding.dart';
 import '../login/register/register_bindings.dart';
 import '../login/register/register_page.dart';
-import '../splash/splash_binding.dart';
-import '../splash/splash_page.dart';
 import 'app_routes.dart';
 
 class AppPages {
