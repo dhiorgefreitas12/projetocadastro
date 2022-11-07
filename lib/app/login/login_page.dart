@@ -53,8 +53,14 @@ class LoginPage extends GetView<LoginController> {
                   child: Form(
                     key: controller.formKey,
                     child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: const Radius.circular(30),
+                          topRight: const Radius.circular(30),
+                        ),
+                      ),
                       height: Get.height * 0.9,
-                      color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.only(
                           top: 10,

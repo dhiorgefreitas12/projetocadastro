@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/routes/app_pages.dart';
-
 import 'package:get/get.dart';
-
 import 'app_binding.dart';
 
 class MyApp extends StatelessWidget {

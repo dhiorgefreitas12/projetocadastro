@@ -1,5 +1,3 @@
-import 'package:flutter_application_1/app/home/home_controller.dart';
-import 'package:flutter_application_1/app/home/new_product/new_product_controller.dart';
 import 'package:get/get.dart';
 import 'app_controller.dart';
 import 'app_repository.dart';

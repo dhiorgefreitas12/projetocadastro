@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/app/models/user_model.dart';
 import 'package:get/get.dart';
-
 import 'auth_repository.dart';
 
 class AuthController extends GetxController {
